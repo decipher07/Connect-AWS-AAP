@@ -1,0 +1,18 @@
+--- # Basic Provisioning Example
+- name: Ansible Host
+  hosts: localhost
+  tasks:
+    - name: start an instance with a public IP address
+      amazon.aws.ec2_instance:
+        name: "public-compute-instance"
+        key_name: "ansible-demo"
+        vpc_subnet_id: subnet-0cd9461882dfdb31d
+        instance_type: t2.micro
+        security_group: default
+        count: 1
+        aws_region: ap-south-1
+        network:
+          assign_public_ip: true
+        image_id: ami-0f9d9a251c1a44858
+        aws_access_key: {{}}
+        aws_secret_key: {{}}
